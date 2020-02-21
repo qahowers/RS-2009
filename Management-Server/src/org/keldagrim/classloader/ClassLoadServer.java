@@ -1,6 +1,5 @@
 package org.keldagrim.classloader;
 
-import org.keldagrim.Management;
 import org.keldagrim.ServerConstants;
 
 import java.io.File;
@@ -53,7 +52,7 @@ public class ClassLoadServer extends Thread {
     public void run() {
     	resetResourceCache();
        // System.out.println("Listening on port " + PORT + "...");
-		while (Management.active) {
+		while (true) {
             Socket clientSocket = null;
             try {
                 clientSocket = serverSocket.accept();

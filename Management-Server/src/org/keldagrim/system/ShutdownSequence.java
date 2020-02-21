@@ -1,8 +1,6 @@
 package org.keldagrim.system;
 
 
-import org.keldagrim.Management;
-
 /**
  * The shutdown sequence used for safely turning off the Management server.
  * @author Emperor
@@ -10,9 +8,14 @@ import org.keldagrim.Management;
  */
 public final class ShutdownSequence extends Thread {
 
+	/**
+	 * If the shutdown hook is active.
+	 */
+	private static boolean active = true;
+	
 	@Override
 	public void run() {
-		if (Management.active) {
+		if (active) {
 			shutdown();
 		}
 	}
@@ -22,6 +25,7 @@ public final class ShutdownSequence extends Thread {
 	 */
 	public static void shutdown() {
 		System.out.println("Management server successfully shut down!");
-		Management.active = false;
+		active = false;
+		System.exit(0);
 	}
 }
